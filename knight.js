@@ -1,3 +1,5 @@
+import {queue} from "./queue";
+
 const square = function(x, y) {
     let xCoordinate = x;
     let yCoordinate = y;
@@ -20,5 +22,17 @@ function isInGameboard(pos) {
     return (0 <= pos.xCoordinate && pos.xCoordinate <= 7 && 0 <= pos.yCoordinate && pos.yCoordinate <= 7);
 }
 
-let pos1 = square(-1, 8);
-console.log(isInGameboard(pos1))
+const moves = [
+    [1, 2], [1, -2], [2, 1], [2, -1],
+    [-1, 2], [-1, -2], [-2, 1], [-2, -1]
+];
+
+function possibleMoves(startPos) {
+    let possiblePositions = [];
+    for (const move of moves) {
+        let pos = applyMove(startPos, move);
+        if (isInGameboard(pos))
+            possiblePositions.push(pos);
+    }
+    return possiblePositions;
+}
