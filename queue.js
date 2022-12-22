@@ -10,6 +10,14 @@ const queue = function() {
         return revData.pop();
     }
 
+    function head() {
+        if (revData.length == 0) {
+            revData = data.reverse();
+            data = [];
+        }
+        return revData[revData.length - 1];
+    }
+
     function push(item) {
         data.push(item);
     }
@@ -21,7 +29,8 @@ const queue = function() {
     return {
         pop,
         push,
-        length
+        length,
+        head
     }
 };
 
